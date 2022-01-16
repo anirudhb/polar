@@ -8,7 +8,6 @@ edition = "2018"
 
 [dependencies]
 anyhow = "1.0.41"
-clap = "3.0.0-beta.2"
-indicatif = "0.16.1"
+clap = { version = "3.0.7", features = ["std", "derive"], default-features = false }
 pulldown-cmark = "0.8.0"
-tera = "1.11.0"
+tera = { version = "1.11.0", default-features = false }

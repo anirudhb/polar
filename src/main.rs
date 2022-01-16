@@ -1,10 +1,10 @@
-use clap::Clap;
+use clap::Parser;
 use std::path::PathBuf;
 use tera::{Context, Tera};
 
 mod html;
 
-#[derive(clap::Clap)]
+#[derive(Parser)]
 #[clap(
     version = "0.1",
     author = "anirudhb <anirudhb@users.noreply.github.com>"
