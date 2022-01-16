@@ -22,6 +22,7 @@
           ])
           fenixPkgs.rust-analyzer
           cargo-edit
+          cargo-bloat
           libiconv
         ];
       };
