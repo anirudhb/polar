@@ -35,7 +35,7 @@ fn htmlify(markdown: &str) -> String {
     String::from_utf8(output).unwrap()
 }
 
-fn main() -> anyhow::Result<()> {
+fn main() -> eyre::Result<()> {
     let opts = Opts::parse();
     let mut polar = Polar {
         tera: Tera::default(),
