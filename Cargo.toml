@@ -10,4 +10,4 @@ edition = "2018"
 eyre = "0.6.5"
 clap = { version = "3.0.7", features = ["derive"] }
 pulldown-cmark = { version = "0.9.1", default-features = false, features = ["simd"] }
-tera = "1.11.0"
+minijinja = "0.13.0"

@@ -1,6 +1,6 @@
 use clap::Parser;
+use minijinja::Environment;
 use std::path::PathBuf;
-use tera::{Context, Tera};
 
 mod html;
 
@@ -15,8 +15,8 @@ struct Opts {
     filename: PathBuf,
 }
 
-struct Polar {
-    tera: Tera,
+struct Polar<'a> {
+    env: Environment<'a>,
     outdir: PathBuf,
 }
 
@@ -38,7 +38,7 @@ fn htmlify(markdown: &str) -> String {
 fn main() -> eyre::Result<()> {
     let opts = Opts::parse();
     let mut polar = Polar {
-        tera: Tera::default(),
+        env: Environment::new(),
         outdir: opts.outdir,
     };
 
@@ -46,7 +46,8 @@ fn main() -> eyre::Result<()> {
     let contents = std::fs::read_to_string(&opts.filename)?;
     let out_html = htmlify(&contents);
     println!("HTMLified = {}", out_html);
-    let out = polar.tera.render_str(&out_html, &Context::new())?;
+    polar.env.add_template("main", &out_html)?;
+    let out = polar.env.get_template("main")?.render(())?;
     println!("templated = {}", out);
 
     Ok(())
