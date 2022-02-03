@@ -121,7 +121,7 @@ where
         use Tag::*;
         match tag {
             Paragraph => write!(self.writer, "<p>")?,
-            Heading(level) => write!(self.writer, "<h{}>", level)?,
+            Heading(level, _, _) => write!(self.writer, "<{}>", level)?,
             Table(alignments) => todo!(),
             TableHead => todo!(),
             TableRow => todo!(),
@@ -154,7 +154,7 @@ where
         use Tag::*;
         match tag {
             Paragraph => write!(self.writer, "</p>")?,
-            Heading(level) => write!(self.writer, "</h{}>", level)?,
+            Heading(level, _, _) => write!(self.writer, "</{}>", level)?,
             Table(..) => todo!(),
             TableHead => todo!(),
             TableRow => todo!(),
